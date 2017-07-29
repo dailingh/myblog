@@ -18,15 +18,17 @@ router.post('/',function(req, res, next){
 		console.log(user);
 		for(i = 0;i<user.length;i++){
 			if(username === user[i].name){
-				console.log("the user is exist")
+				res.write('the user is exist');
+				break;
 			}
-			
+			user.push({name: username,password: password});	
+			console.log(user);	
+			var newuser = JSON.stringify(user);
+			console.log(newuser);
+			fs.writeFile('./data/data.js',newuser);
+			res.write('new user is signed up')
 		}
-		user.push({name: username,password: password});	
-		console.log(user);	
-		// var newuser = JSON.stringify(user);
-		// console.log(newuser);
-		// fs.writeFile('./data/data.js',newuser)
+		
 	})
 	res.end();
 })
