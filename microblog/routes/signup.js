@@ -5,7 +5,7 @@ var fs = require('fs');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	res.render('signup', { title: 'Sign Up' });
-	next();
+	// next();
 });
 router.post('/',function(req, res, next){
 	var username = req.body.username;
@@ -13,22 +13,22 @@ router.post('/',function(req, res, next){
 	console.log(username);
 	console.log(password);
 	fs.readFile('./data/data.js','utf-8', function(err,data){
-		console.log(data); 
+		console.log(data);
 		var user = JSON.parse(data);
 		console.log(user);
 		for(i = 0;i<user.length;i++){
 			if(username === user[i].name){
-				res.write('the user is exist');
+				res.send('the user is exist');
 				break;
 			}
-			user.push({name: username,password: password});	
-			console.log(user);	
+			user.push({name: username,password: password});
+			console.log(user);
 			var newuser = JSON.stringify(user);
 			console.log(newuser);
 			fs.writeFile('./data/data.js',newuser);
 			res.write('new user is signed up')
 		}
-		
+
 	})
 	res.end();
 })
