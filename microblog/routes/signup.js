@@ -13,24 +13,32 @@ router.post('/',function(req, res, next){
 	console.log(username);
 	console.log(password);
 	fs.readFile('./data/data.js','utf-8', function(err,data){
-		console.log(data);
+		// console.log(data);
 		var user = JSON.parse(data);
-		console.log(user);
+		// console.log(user);
+		var A ;
 		for(i = 0;i<user.length;i++){
 			if(username === user[i].name){
-				res.send('the user is exist');
-				break;
+				// res.send('the user is exist');
+				// break;
+				A = true;
+			}else{
+				A = false;
 			}
+		}
+		console.log(A);
+		if (A) {
+			res.send('the user is exist');
+		}else {
 			user.push({name: username,password: password});
 			console.log(user);
 			var newuser = JSON.stringify(user);
 			console.log(newuser);
 			fs.writeFile('./data/data.js',newuser);
-			res.write('new user is signed up')
+			res.send('new user is signed up')
 		}
-
 	})
-	res.end();
+	// res.end();
 })
 
 module.exports = router;
