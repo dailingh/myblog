@@ -9,6 +9,9 @@ submit.addEventListener("click",function(){
     password: password.value
   }).then(function (res) {
     alert(res.data);
+		if(res.data === "new user is signed up"){
+			window.open('/')
+		}
   })
   .catch(function (error) {
     console.log(error);
