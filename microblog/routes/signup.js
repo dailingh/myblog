@@ -10,8 +10,8 @@ router.get('/', function(req, res, next) {
 router.post('/',function(req, res, next){
 	var username = req.body.username;
 	var password = req.body.password;
-	console.log(username);
-	console.log(password);
+	// console.log(username);
+	// console.log(password);
 	fs.readFile('./data/data.js','utf-8', function(err,data){
 		// console.log(data);
 		var user = JSON.parse(data);
@@ -22,6 +22,7 @@ router.post('/',function(req, res, next){
 				// res.send('the user is exist');
 				// break;
 				A = true;
+				break;
 			}else{
 				A = false;
 			}
