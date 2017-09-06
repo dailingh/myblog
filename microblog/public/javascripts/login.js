@@ -10,6 +10,8 @@ submit.addEventListener("click",function(){
   }).then(function (res) {
 		if(res.data === "the user is undefined"){
 			alert(res.data);
+		}else {
+			window.location.href = "/user";
 		}
   })
   .catch(function (error) {

@@ -13,6 +13,11 @@ var login = require('./routes/login');
 // var post = require('./routes/post');
 
 var app = express();
+var session = require('express-session');
+app.use(session({
+    secret: 'recommend 128 bytes random string',
+    cookie: {maxAge: 3600 * 1000},
+}))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
