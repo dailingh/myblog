@@ -18,7 +18,6 @@ router.post('/',function (req, res, next) {
 	// console.log(req.session);
 	// res.redirect(301, '/user');
 	// res.location('/user');
-	req.session.username = username;
   fs.readFile('./data/data.js','utf-8',function (err,data) {
     var user = JSON.parse(data);
     var A;
@@ -30,10 +29,11 @@ router.post('/',function (req, res, next) {
         A = false;
       }
     }
+
     // console.log(A)
     if (A) {
+			req.session.username = username;
       res.redirect('/user');
-
 			console.log(req.session.username);
     }else {
       res.send('the user is undefined');

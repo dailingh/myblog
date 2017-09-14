@@ -4,7 +4,7 @@ var submit = document.querySelector('#submit');
 submit.addEventListener("click",function(){
 	console.log(username.value);
 	console.log(password.value);
-	axios.post('/login', {
+	axios.post("/login", {
     username: username.value,
     password: password.value
   }).then(function (res) {

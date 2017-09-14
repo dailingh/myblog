@@ -1,9 +1,13 @@
-// var express = require('express');
-// var router = express.Router();
-// var session = require('express-session');
+var express = require('express');
+var router = express.Router();
+var session = require('express-session');
 //
-// router.post('/',function (req, res) {
-//   if (req.body.logout === "yeah") {
-//
-//   }
-// })
+router.get('/',function (req, res) {
+  delete req.session.username;
+  // res.send('logout');
+  res.redirect('/');
+  // if (req.body.logout === "yeah") {
+  //
+  // }
+})
+module.exports = router;
