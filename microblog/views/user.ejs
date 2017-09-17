@@ -2,20 +2,20 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/user.css' />
   </head>
   <body>
-    <div><%= title %></div>
+    <h1><%= title %></h1>
     <div class="user"><%=username%></div>
     <button type="button" name="button" class="logout">logout</button>
-    <h1><%= title %></h1>
+
     <p>Welcome to <%= title %></p>
     <div>
       <input type="text" name="" value="" class="text">
       <input type="button" name="" value="submit" class="submit">
     </div>
     <div class="content">
-      <div><%-weibos%></div>
+      <%-weibos%>
     </div>
     <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
     <script src="./javascripts/axios.js"></script>

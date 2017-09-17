@@ -22,18 +22,19 @@ logout.addEventListener("click",function () {
 submit.addEventListener("click",function () {
   axios.post("/user",{
     name: author.innerText,
-    time: new Date(),
+    time: new Date().toLocaleString(),
     blog: text.value,
   })
   .then(function(res) {
-    if(res.data === "new blog is created"){
+    console.log(res.data);
+    if(res.data.state === 200){
       var tpl = document.createElement("div");
       var content = document.querySelector(".content");
-
-      console.log(content);
-      tpl.className = "div";
-      tpl.innerText = text.value;
-      content.appendChild(tpl);
+      tpl.className = "blog";
+      // console.log(content);
+      tpl.innerHTML = "<div>"+res.data.name+"</div><div>"+res.data.time+"</div><div>"+res.data.blog+"</div>";
+      content.insertBefore(tpl,content.firstChild);
+      text.value = "";
     }
   })
   .catch(function (error) {

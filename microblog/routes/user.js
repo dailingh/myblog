@@ -11,9 +11,11 @@ router.get('/', function(req, res, next) {
     var blogs = JSON.parse(data);
     console.log(blogs[1]);
     for (var i = 0; i < blogs.length; i++) {
-      weibos += "<div>"+blogs[i].name+"</div><div>"+blogs[i].time+"</div><div>"+blogs[i].blog+"</div>"
+      if (blogs[i].name === req.session.username) {
+        weibos += "<div class = 'blog'><div>"+blogs[i].name+"</div><div>"+blogs[i].time+"</div><div>"+blogs[i].blog+"</div></div>"
+      }      
     }
-    console.log(weibos+"111");
+    // console.log(weibos+"111");
     res.render('user', {
       title: 'Express' ,
       username: req.session.username,
@@ -28,7 +30,7 @@ router.post('/',function(req, res, next) {
   console.log(req.body);
   fs.readFile('./data/blog.js','utf-8',function(err,data) {
     var blog = JSON.parse(data);
-    blog.push({
+    blog.unshift({
       name: req.body.name,
       time: req.body.time,
       blog: req.body.blog,
@@ -36,6 +38,11 @@ router.post('/',function(req, res, next) {
     var newblog = JSON.stringify(blog);
     fs.writeFile('./data/blog.js',newblog)
   })
-  res.send('new blog is created')
+  res.json({
+    state:200,
+    name: req.body.name,
+    time: req.body.time,
+    blog: req.body.blog,
+  })
 })
 module.exports = router;
